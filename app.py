@@ -1,6 +1,7 @@
 from flask import Flask
-from models import db
+from models import db 
 from v1.pais import pais_v1_bp
+
 
 def create_app():
     app = Flask(__name__)
@@ -20,3 +21,5 @@ def create_app():
 if __name__ == '__main__':
     app = create_app()
     app.run(debug=True)
+
+
