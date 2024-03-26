@@ -6,7 +6,8 @@ def create_app():
     app = Flask(__name__)
 
     # Configuración de la base de datos
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost:5432/postgres'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234567890@localhost:5432/postgres'
+
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
     # Inicialización de la base de datos
@@ -20,3 +21,6 @@ def create_app():
 if __name__ == '__main__':
     app = create_app()
     app.run(debug=True)
+
+
+

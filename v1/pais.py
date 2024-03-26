@@ -7,12 +7,13 @@ pais_v1_bp = Blueprint('pais_v1', __name__, url_prefix='/v1/pais')
 def obtener_paises():
     paises = Pais.query.all()
     resultado = [{
-        'id': pais.id,
+        'id_pais': pais.id_pais,
         'nombre': pais.nombre,
-        'indicativo_telefonico': float(pais.indicativo_telefonico),
-        'estado': int(pais.estado),
+        'codigo': float(pais.codigo),
+        'capital': int(pais.capital),
+        'region':pais.region,
         'fecha_registro': pais.fecha_registro.isoformat(),
-        'fecha_actualizacion': pais.fecha_actualizacion.isoformat(),
+        
         'usuario_id': pais.usuario_id,
         'ip_address': pais.ip_address
     } for pais in paises]
@@ -25,12 +26,13 @@ def obtener_pais(pais_id):
         return jsonify({'mensaje': 'Pais no encontrado'}), 404
 
     resultado = {
-        'id': pais.id,
+        'id_pais': pais.id_pais,
         'nombre': pais.nombre,
-        'indicativo_telefonico': float(pais.indicativo_telefonico),
-        'estado': int(pais.estado),
+        'codigo': float(pais.codigo),
+        'capital': int(pais.capital),
+        'region':pais.region,
         'fecha_registro': pais.fecha_registro.isoformat(),
-        'fecha_actualizacion': pais.fecha_actualizacion.isoformat(),
+        
         'usuario_id': pais.usuario_id,
         'ip_address': pais.ip_address
     }
