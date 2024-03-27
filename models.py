@@ -1,13 +1,12 @@
 
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
-
 
 db = SQLAlchemy()
 
 class Pais(db.Model):
     __tablename__ = 'pais'
     __table_args__ = {'schema': 'public'}
+
 
     id_pais = db.Column(db.String(3), primary_key=True)  # Cambiado a minúsculas
     nombre = db.Column(db.String(40), nullable=False)  # Cambiado a minúsculas

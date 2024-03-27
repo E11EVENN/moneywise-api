@@ -11,10 +11,10 @@ def obtener_paises():
         'nombre': pais.nombre,
         'indicativo_telefonico': float(pais.indicativo_telefonico),
         'estado': int(pais.estado),
-        'fecha_resgistro': pais.fecha_resgistro.isoformat(),
+        'fecha_registro': pais.fecha_registro.isoformat(),
         'fecha_actualizacion': pais.fecha_actualizacion.isoformat(),
-        'id_usuario': pais.id_usuario,
-        'id_address': pais.id_address
+        'usuario_id': pais.usuario_id,
+        'ip_address': pais.ip_address
     } for pais in paises]
     return jsonify(resultado)
 
@@ -29,11 +29,12 @@ def obtener_pais(id_pais):
         'nombre': pais.nombre,
         'indicativo_telefonico': float(pais.indicativo_telefonico),
         'estado': int(pais.estado),
-        'fecha_resgistro': pais.fecha_resgistro.isoformat(),
+        'fecha_registro': pais.fecha_registro.isoformat(),
         'fecha_actualizacion': pais.fecha_actualizacion.isoformat(),
-        'id_usuario': pais.id_usuario,
-        'id_address': pais.id_address
+        'usuario_id': pais.usuario_id,
+        'ip_address': pais.ip_address
     }
     return jsonify(resultado)
 
 # Aquí podrías definir más rutas para crear, actualizar y eliminar países si es necesario.
+
