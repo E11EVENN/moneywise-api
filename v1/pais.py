@@ -14,7 +14,7 @@ def obtener_paises():
         'fecha_resgistro': pais.fecha_resgistro.isoformat(),
         'fecha_actualizacion': pais.fecha_actualizacion.isoformat(),
         'id_usuario': pais.id_usuario,
-        'ip_address': pais.ip_address
+        'id_address': pais.id_address
     } for pais in paises]
     return jsonify(resultado)
 
@@ -32,7 +32,7 @@ def obtener_pais(id_pais):
         'fecha_resgistro': pais.fecha_resgistro.isoformat(),
         'fecha_actualizacion': pais.fecha_actualizacion.isoformat(),
         'id_usuario': pais.id_usuario,
-        'ip_address': pais.ip_address
+        'id_address': pais.id_address
     }
     return jsonify(resultado)
 

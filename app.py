@@ -1,6 +1,7 @@
 from flask import Flask
 from models import db 
 from v1.pais import pais_v1_bp
+from v1.ciudad import ciudad_v1_bp
 
 
 def create_app():
@@ -15,6 +16,8 @@ def create_app():
 
     # Registro del blueprint para la versión 1 de la API
     app.register_blueprint(pais_v1_bp, url_prefix='/v1/pais')
+    app.register_blueprint(ciudad_v1_bp, url_prefix='/v1/ciudad')
+    
 
     return app
 
