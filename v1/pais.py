@@ -14,7 +14,7 @@ def obtener_paises():
         'fecha_registro': pais.fecha_registro.isoformat() if pais.fecha_registro else None,
         'fecha_actualizacion': pais.fecha_actualizacion.isoformat() if pais.fecha_actualizacion else None,
         'usuario_id': pais.usuario_id,
-        'id_address': pais.ip_address  # Changed 'id_address' to 'ip_address'
+        'id_address': pais.id_address  # Changed 'id_address' to 'ip_address'
     } for pais in paises]
     return jsonify(resultado)
 

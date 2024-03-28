@@ -8,33 +8,32 @@ class Pais(db.Model):
     __tablename__ = 'pais'
     __table_args__ = {'schema': 'public'}
 
-
-    id_pais = db.Column(db.String(3), primary_key=True)  # Cambiado a minúsculas
-    nombre = db.Column(db.String(40), nullable=False)  # Cambiado a minúsculas
-    indicativo_telefonico = db.Column(db.Numeric(4), nullable=False)  # Cambiado a minúsculas
-    estado = db.Column(db.Numeric(1), nullable=False)  # Cambiado a minúsculas
-    fecha_resgistro = db.Column(db.TIMESTAMP(timezone=True), nullable=False, default=datetime.utcnow)  # Cambiado a minúsculas
-    fecha_actualizacion = db.Column(db.TIMESTAMP(timezone=True), nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)  # Cambiado a minúsculas
-    id_usuario = db.Column(db.String(10), nullable=True)  # Cambiado a minúsculas
-    id_address = db.Column(db.String(15), nullable=True)  # Cambiado a minúsculas
+    id_pais = db.Column(db.String(5), primary_key=True)  # Longitud cambiada a 5 para coincidir con CHAR(5)
+    nombre = db.Column(db.String(40), nullable=False)  # VARCHAR(40) coincide con String(40)
+    indicativo_telefonico = db.Column(db.Numeric(5, 0), nullable=False)  # Precisión cambiada a 5
+    estado = db.Column(db.String(10), nullable=False)  # VARCHAR(10) se refleja como String(10)
+    fecha_registro = db.Column(db.DateTime(timezone=True), nullable=True)  # Corregido el typo y cambiado a DateTime
+    fecha_actualizacion = db.Column(db.DateTime(timezone=True), nullable=True, onupdate=datetime.utcnow)
+    usuario_id = db.Column(db.String(15), nullable=False)  # NOT NULL agregado
+    id_address = db.Column(db.Numeric(10, 0), nullable=True)  # Tipo cambiado a Numeric y nullable True
 
     def __repr__(self):
-        return f"<Pais(id_pais='{self.id}', nombre='{self.nombre}', indicativo_telefonico={self.indicativo_telefonico}, estado={self.estado}, fecha_resgistro='{self.fecha_resgistro}', fecha_actualizacion='{self.fecha_actualizacion}', id_usuario='{self.id_usuario}', id_address='{self.id_address}')>"
-
+        return f"<Pais(id_pais='{self.id_pais}', nombre='{self.nombre}', indicativo_telefonico={self.indicativo_telefonico}, estado={self.estado}, fecha_registro='{self.fecha_registro}', fecha_actualizacion='{self.fecha_actualizacion}', id_usuario='{self.id_usuario}', id_address='{self.id_address}')>"
+    
+    
 class Ciudad(db.Model):
-    __tablename__ = 'ciudad'  # Asegúrate de que el nombre de la tabla es el correcto.
-    # Aquí estamos definiendo cada columna explícitamente con el tipo apropiado.
-    id_ciudad = db.Column(db.Integer, primary_key=True)  # Cambiando a Integer si id_ciudad es un número.
-    id_departamento = db.Column(db.Integer, nullable=True)  # Asumiendo que es un número, cambia según sea necesario.
-    nombre = db.Column(db.String(40), nullable=False)  # Asegúrate de que el tamaño es el correcto.
-    indicativo = db.Column(db.String(4), nullable=False)  # Cambiando a String si es un VARCHAR en la base de datos.
-    estado = db.Column(db.Boolean, nullable=False)  # Asumiendo que estado es un booleano.
-    fecha_registro = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)  # Usando DateTime de SQLAlchemy.
-    fecha_actulizacion = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
+    __tablename__ = 'ciudad'
+    id_ciudad = db.Column(db.Integer, primary_key=True)
+    id_departamento = db.Column(db.Integer, db.ForeignKey('departamento.id_departamento'), nullable=True)
+    nombre = db.Column(db.String(40), nullable=False)
+    indicativo = db.Column(db.String(4), nullable=False)
+    estado = db.Column(db.Boolean, nullable=False)
+    fecha_registro = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+    fecha_actualizacion = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
 
     def __repr__(self):
         return f"<Ciudad(id_ciudad={self.id_ciudad}, id_departamento={self.id_departamento}, nombre='{self.nombre}', indicativo='{self.indicativo}', estado={self.estado}, fecha_registro='{self.fecha_registro}', fecha_actualizacion='{self.fecha_actualizacion}')>"
-
+    
 
 class Credito(db.Model):
     __tablename__ = 'credito'
@@ -69,17 +68,36 @@ class Depto(db.Model):
     __table_args__ = {'schema': 'public'}
 
     id_departamento = db.Column(db.String(3), primary_key=True)
-    id_pais = db.Column(db.String(3), db.ForeignKey('public.depto.id_depto'))
+    id_pais = db.Column(db.String(3), db.ForeignKey('public.pais.id_pais'))
     nombre = db.Column(db.String(30), nullable=False)
     indicativo = db.Column(db.String(3), nullable=False)
     fecha_registro = db.Column(db.Date, nullable=False, default=datetime.utcnow)
     fecha_actualizacion = db.Column(db.Date, nullable=False, default=datetime.utcnow)
     estado = db.Column(db.Numeric(1), nullable=False)
     id_usuario = db.Column(db.String(10))
-    op_address = db.Column(db.String(15), nullable=False)
+    ip_address = db.Column(db.String(15), nullable=False)
 
     def __repr__(self):
         return f"<Depto(id_departamento='{self.id_departamento}', nombre='{self.nombre}', indicativo='{self.indicativo}', fecha_registro='{self.fecha_registro}', fecha_actualizacion='{self.fecha_actualizacion}', estado={self.estado}, id_usuario='{self.id_usuario}', op_address='{self.op_address}')>"
+
+
+
+class Cliente(db.Model):
+    __tablename__ = 'cliente'
+    __table_args__ = {'schema': 'public'}
+
+    id_cliente = db.Column(db.Numeric(10), primary_key=True)
+    id_ciudad = db.Column(db.String(255))
+    id_cliente_email = db.Column(db.String(255))
+    id_direccion = db.Column(db.String(255))
+    id_tipo_telefono = db.Column(db.Numeric(10))
+    nombre = db.Column(db.String(20), nullable=False)
+    apellido = db.Column(db.String(30))
+    documento = db.Column(db.String(10))
+    fecha_registro = db.Column(db.TIMESTAMP(timezone=True), nullable=False, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f"<Cliente(id_cliente={self.id_cliente}, id_ciudad='{self.id_ciudad}', id_cliente_email='{self.id_cliente_email}', id_direccion='{self.id_direccion}', id_tipo_telefono={self.id_tipo_telefono}, nombre='{self.nombre}', apellido='{self.apellido}', documento='{self.documento}', fecha_registro='{self.fecha_registro}')>"
 
 
 # ... Otros modelos si es necesario

@@ -5,6 +5,9 @@ from v1.ciudad import ciudad_v1_bp
 from v1.credito import credito_v1_bp
 from v1.credito_intereses import credito_intereses_v1_bp
 from v1.depto import depto_v1_bp
+from v1.cliente import cliente_v1_bp
+
+
 
 
 
@@ -25,7 +28,9 @@ def create_app():
     app.register_blueprint(credito_v1_bp, url_prefix='/v1/credito')
     app.register_blueprint(credito_intereses_v1_bp, url_prefix='/v1/credito-intereses')
     app.register_blueprint(depto_v1_bp, url_prefix='/v1/depto')
+    app.register_blueprint(cliente_v1_bp, url_prefix='/v1/cliente')
 
+   
     return app
 
 if __name__ == '__main__':
