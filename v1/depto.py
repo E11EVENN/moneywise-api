@@ -17,7 +17,7 @@ def obtener_deptos():
         'fecha_registro': depto.fecha_registro.isoformat() if depto.fecha_registro else None,
         'fecha_actualizacion': depto.fecha_actualizacion.isoformat() if depto.fecha_actualizacion else None,
         'id_usuario': depto.id_usuario,
-        'op_address': depto.op_address
+        'ip_address': depto.ip_address
     } for depto in deptos]
     return jsonify(resultado)
 
@@ -36,7 +36,7 @@ def obtener_depto(id_departamento):
         'fecha_registro': depto.fecha_registro.isoformat() if depto.fecha_registro else None,
         'fecha_actualizacion': depto.fecha_actualizacion.isoformat() if depto.fecha_actualizacion else None,
         'id_usuario': depto.id_usuario,
-        'op_address': depto.op_address
+        'ip_address': depto.ip_address
     }
     return jsonify(resultado)
 
