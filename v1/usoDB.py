@@ -39,7 +39,7 @@ class Database:
 db_config = {
     'hostname': 'localhost',
     'username': 'postgres',
-    'password': '123456789',
+    'password': '1234567890',
     'database': 'postgres'
 }
 

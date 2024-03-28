@@ -1,5 +1,6 @@
 
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -34,3 +35,20 @@ class Ciudad(db.Model):
     
     def __repr__(self):
         return f"<Ciudad(id_ciudad='{self.id}', id_departamento='{self.id_departamento}',nombre='{self.nombre}', indicativo={self.indicativo}, estado={self.estado}, fecha_registro='{self.fecha_registro}', fecha_actulizacion='{self.fecha_actulizacion}')>"
+
+
+class Credito(db.Model):
+    __tablename__ = 'CREDITO'
+    __table_args__ = {'schema': 'public'}
+
+    id_credito = db.Column(db.Integer, primary_key=True)
+    id_cliente = db.Column(db.Integer, nullable=True)
+    id_tipo_credito = db.Column(db.Integer, nullable=True)
+    monto = db.Column(db.Numeric(10, 2), nullable=True)
+    fecha_inicio = db.Column(db.Date, nullable=True)
+    estado = db.Column(db.String(2), nullable=True)
+
+    def __repr__(self):
+        return f"<Credito(id_credito={self.id_credito}, id_cliente={self.id_cliente}, id_tipo_credito={self.id_tipo_credito}, monto={self.monto}, fecha_inicio='{self.fecha_inicio}', estado='{self.estado}')>"
+
+# ... Otros modelos si es necesario
