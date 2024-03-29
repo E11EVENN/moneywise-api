@@ -23,6 +23,16 @@ from v1.tipo_interes import tipo_interes_v1_bp
 from v1.tipo_documento import tipo_documento_v1_bp
 from v1.cliente_direcciones import cliente_direccion_v1_bp
 from v1.tipo_cliente import tipo_cliente_v1_bp
+from v1.tipo_telefono import tipo_telefono_v1_bp
+from v1.cliente_telefonos import cliente_telefono_v1_bp
+from v1.tipo_email import tipo_email_v1_bp
+from v1.cliente_email import cliente_email_v1_bp
+from v1.organizacion_clientes import organizacion_cliente_v1_bp
+from v1.direccion import direccion_v1_bp
+from v1.tipo_direccion import tipo_direccion_v1_bp
+
+
+
 
 def create_app():
     app = Flask(__name__)
@@ -58,6 +68,13 @@ def create_app():
     app.register_blueprint(tipo_documento_v1_bp, url_prefix='/v1/tipo_documento')
     app.register_blueprint(cliente_direccion_v1_bp, url_prefix='/v1/cliente_direcciones')
     app.register_blueprint(tipo_cliente_v1_bp, url_prefix='/v1/tipo_cliente')
+    app.register_blueprint(tipo_telefono_v1_bp, url_prefix='/v1/tipo_telefono')
+    app.register_blueprint(cliente_telefono_v1_bp, url_prefix='/v1/cliente_telefonos')
+    app.register_blueprint(tipo_email_v1_bp, url_prefix='/v1/tipo_email')
+    app.register_blueprint(cliente_email_v1_bp, url_prefix='/v1/cliente_email')
+    app.register_blueprint(organizacion_cliente_v1_bp, url_prefix='/v1/organizacion_clientes')
+    app.register_blueprint(direccion_v1_bp, url_prefix='/v1/direccion')
+    app.register_blueprint(tipo_direccion_v1_bp, url_prefix='/v1/tipo_direccion') 
 
     return app
 
