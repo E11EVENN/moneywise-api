@@ -15,8 +15,14 @@ from v1.credito_reporte_moras import credito_reporte_mora_v1_bp
 from v1.credito_paz_salvo import credito_paz_salvo_v1_bp
 from v1.credito_pagos import credito_pago_v1_bp
 from v1.organizacion_creditos import organizacion_credito_v1_bp
-
-
+from v1.tipo_movimiento import tipo_movimiento_v1_bp
+from v1.organizacion_usuarios import organizacion_usuario_v1_bp
+from v1.organizacion import organizacion_v1_bp
+from v1.interes import interes_v1_bp
+from v1.tipo_interes import tipo_interes_v1_bp
+from v1.tipo_documento import tipo_documento_v1_bp
+from v1.cliente_direcciones import cliente_direccion_v1_bp
+from v1.tipo_cliente import tipo_cliente_v1_bp
 
 def create_app():
     app = Flask(__name__)
@@ -44,6 +50,14 @@ def create_app():
     app.register_blueprint(credito_paz_salvo_v1_bp, url_prefix='/v1/credito_paz_salvo')
     app.register_blueprint(credito_pago_v1_bp, url_prefix='/v1/credito_pagos')
     app.register_blueprint(organizacion_credito_v1_bp, url_prefix='/v1/organizacion_creditos')
+    app.register_blueprint(tipo_movimiento_v1_bp, url_prefix='/v1/tipo_movimiento') 
+    app.register_blueprint(organizacion_usuario_v1_bp, url_prefix='/v1/organizacion_usuarios') 
+    app.register_blueprint(organizacion_v1_bp, url_prefix='/v1/organizacion')
+    app.register_blueprint(interes_v1_bp, url_prefix='/v1/interes')
+    app.register_blueprint(tipo_interes_v1_bp, url_prefix='/v1/tipo_interes')
+    app.register_blueprint(tipo_documento_v1_bp, url_prefix='/v1/tipo_documento')
+    app.register_blueprint(cliente_direccion_v1_bp, url_prefix='/v1/cliente_direcciones')
+    app.register_blueprint(tipo_cliente_v1_bp, url_prefix='/v1/tipo_cliente')
 
     return app
 

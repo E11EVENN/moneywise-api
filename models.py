@@ -214,5 +214,97 @@ class OrganizacionCredito(db.Model):
     def __repr__(self):
         return f"<OrganizacionCredito(id_organizacion_credito='{self.id_organizacion_credito}', id_organizacion='{self.id_organizacion}', id_credito='{self.id_credito}')>"
 
+class TipoMovimiento(db.Model):
+    __tablename__ = 'tipo_movimiento'
+    __table_args__ = {'schema': 'public'}
+
+    id_tipo_movimiento = db.Column(db.String(50), primary_key=True)
+    descripcion = db.Column(db.String(50))
+
+    def __repr__(self):
+        return f"<TipoMovimiento(id_tipo_movimiento='{self.id_tipo_movimiento}', descripcion='{self.descripcion}')>"
+
+
+class OrganizacionUsuario(db.Model):
+    __tablename__ = 'organizacion_usuarios'
+    __table_args__ = {'schema': 'public'}
+
+    id_organizacion_usuario = db.Column(db.String(50), primary_key=True)
+    id_organizacion = db.Column(db.String(50))
+    id_usuario = db.Column(db.String(50))
+
+    def __repr__(self):
+        return f"<OrganizacionUsuario(id_organizacion_usuario='{self.id_organizacion_usuario}', id_organizacion='{self.id_organizacion}', id_usuario='{self.id_usuario}')>"
+
+
+class Organizacion(db.Model):
+    __tablename__ = 'organizacion'
+    __table_args__ = {'schema': 'public'}
+
+    id_organizacion = db.Column(db.Numeric(10), primary_key=True)
+    nombre = db.Column(db.String(100))
+
+    def __repr__(self):
+        return f"<Organizacion(id_organizacion={self.id_organizacion}, nombre='{self.nombre}')>"
+
+
+class Interes(db.Model):
+    __tablename__ = 'interes'
+    __table_args__ = {'schema': 'public'}
+
+    id_interes = db.Column(db.Numeric(10), primary_key=True)
+    id_tipo_interes = db.Column(db.Numeric(10))
+    tasa = db.Column(db.DECIMAL(5, 2))
+    descripcion = db.Column(db.String(100))
+
+    def __repr__(self):
+        return f"<Interes(id_interes={self.id_interes}, id_tipo_interes={self.id_tipo_interes}, tasa={self.tasa}, descripcion='{self.descripcion}')>"
+
+class TipoInteres(db.Model):
+    __tablename__ = 'tipo_interes'
+    __table_args__ = {'schema': 'public'}
+
+    id_tipo_interes = db.Column(db.Numeric(10), primary_key=True)
+    descripcion = db.Column(db.String(100))
+
+    def __repr__(self):
+        return f"<TipoInteres(id_tipo_interes={self.id_tipo_interes}, descripcion='{self.descripcion}')>"
+
+
+class TipoDocumento(db.Model):
+    __tablename__ = 'tipo_documento'
+    __table_args__ = {'schema': 'public'}
+
+    id_tipo_documento = db.Column(db.String(5), primary_key=True)
+    descripcion = db.Column(db.String(100))
+
+    def __repr__(self):
+        return f"<TipoDocumento(id_tipo_documento='{self.id_tipo_documento}', descripcion='{self.descripcion}')>"
+
+
+class ClienteDireccion(db.Model):
+    __tablename__ = 'cliente_direcciones'
+    __table_args__ = {'schema': 'public'}
+
+    id_direcciones = db.Column(db.String(25), primary_key=True)
+    id_cliente = db.Column(db.String(25))
+    id_direccion = db.Column(db.String(25))
+    tip_id_direccion = db.Column(db.String(25))
+
+    def __repr__(self):
+        return f"<ClienteDireccion(id_direcciones='{self.id_direcciones}', id_cliente='{self.id_cliente}', id_direccion='{self.id_direccion}', tip_id_direccion='{self.tip_id_direccion}')>"
+
+
+class TipoCliente(db.Model):
+    __tablename__ = 'tipo_cliente'
+    __table_args__ = {'schema': 'public'}
+
+    id_tipo_cliente = db.Column(db.String(20), primary_key=True)
+    id_cliente = db.Column(db.Numeric(10))
+    descripcion = db.Column(db.String(100))
+
+    def __repr__(self):
+        return f"<TipoCliente(id_tipo_cliente='{self.id_tipo_cliente}', id_cliente={self.id_cliente}, descripcion='{self.descripcion}')>"
+
 
 # ... Otros modelos si es necesario
