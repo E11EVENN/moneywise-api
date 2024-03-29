@@ -307,4 +307,84 @@ class TipoCliente(db.Model):
         return f"<TipoCliente(id_tipo_cliente='{self.id_tipo_cliente}', id_cliente={self.id_cliente}, descripcion='{self.descripcion}')>"
 
 
+class TipoTelefono(db.Model):
+    __tablename__ = 'tipo_telefono'
+    __table_args__ = {'schema': 'public'}
+
+    id_tipo_telefono = db.Column(db.String(15), primary_key=True)
+    id_cliente_telefono = db.Column(db.String(15))
+    descripcion = db.Column(db.String(100))
+
+    def __repr__(self):
+        return f"<TipoTelefono(id_tipo_telefono='{self.id_tipo_telefono}', id_cliente_telefono='{self.id_cliente_telefono}', descripcion='{self.descripcion}')>"
+
+
+class ClienteTelefono(db.Model):
+    __tablename__ = 'cliente_telefonos'
+    __table_args__ = {'schema': 'public'}
+
+    id_cliente_telefono = db.Column(db.String(10), primary_key=True)
+    telefono = db.Column(db.String(10))
+
+    def __repr__(self):
+        return f"<ClienteTelefono(id_cliente_telefono='{self.id_cliente_telefono}', telefono='{self.telefono}')>"
+
+
+class TipoEmail(db.Model):
+    __tablename__ = 'tipo_email'
+    __table_args__ = {'schema': 'public'}
+
+    id_tipo_email = db.Column(db.String(10), primary_key=True)
+    descripcion = db.Column(db.String(50))
+
+    def __repr__(self):
+        return f"<TipoEmail(id_tipo_email='{self.id_tipo_email}', descripcion='{self.descripcion}')>"
+
+
+class ClienteEmail(db.Model):
+    __tablename__ = 'cliente_email'
+    __table_args__ = {'schema': 'public'}
+
+    id_cliente_email = db.Column(db.String(20), primary_key=True)
+    id_tipo_email = db.Column(db.String(20))
+    email = db.Column(db.String(25))
+
+    def __repr__(self):
+        return f"<ClienteEmail(id_cliente_email='{self.id_cliente_email}', id_tipo_email='{self.id_tipo_email}', email='{self.email}')>"
+
+
+class OrganizacionCliente(db.Model):
+    __tablename__ = 'organizacion_clientes'
+    __table_args__ = {'schema': 'public'}
+
+    id_organizacion_cliente = db.Column(db.String(25), primary_key=True)
+    id_cliente = db.Column(db.Numeric(10))
+    id_organizacion = db.Column(db.Numeric(10))
+
+    def __repr__(self):
+        return f"<OrganizacionCliente(id_organizacion_cliente='{self.id_organizacion_cliente}', id_cliente={self.id_cliente}, id_organizacion={self.id_organizacion})>"
+
+
+class Direccion(db.Model):
+    __tablename__ = 'direccion'
+    __table_args__ = {'schema': 'public'}
+
+    barrio = db.Column(db.String(20), primary_key=True)
+    ciudad = db.Column(db.String(20))
+    direccion = db.Column(db.String(20))
+
+    def __repr__(self):
+        return f"<Direccion(barrio='{self.barrio}', ciudad='{self.ciudad}', direccion='{self.direccion}')>"
+
+
+class TipoDireccion(db.Model):
+    __tablename__ = 'tipo_direccion'
+    __table_args__ = {'schema': 'public'}
+
+    id_direccion = db.Column(db.String(20), primary_key=True)
+    pueblo_o_ciudad = db.Column(db.String(20), nullable=False)
+
+    def __repr__(self):
+        return f"<TipoDireccion(id_direccion='{self.id_direccion}', pueblo_o_ciudad='{self.pueblo_o_ciudad}')>"
+
 # ... Otros modelos si es necesario
